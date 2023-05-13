@@ -12,6 +12,11 @@
     height: 1rem;
 }
 
+.empty {
+    transform: scale(1.2);
+    background-color: rgb(140, 105, 255);
+}
+
 /* 
 0:'empty',
 1:'dot',
@@ -36,36 +41,40 @@
     background-color:pink;
 }
 
-/* .dot{
-    background-image: url('../img/dot.svg');
+.dot{
+    background-image: url('../../img/dot.svg');
     background-repeat: no-repeat;
     background-size: 30% 30%;
     background-position: center;
-} */
+}
 
-/* .great-dot{
-    background-image: url('../img/dot.svg');
+.great-dot{
+    background-image: url('../../img/dot.svg');
     background-repeat: no-repeat;
     background-size: 70% 70%;
     background-position: center;
-} */
-
-.blue{
-    background-color: blue;
 }
 
-.yellow{
-    background-color: yellow;
+.light-mode .dot, .light-mode .great-dot{
+    background-image: url('../../img/dark-dot.svg');
 }
 
-.red{
-    background-color: red;
+.field-blue{
+    background-color: rgb(6, 6, 199);
 }
 
-.green{
-    background-color: green;
+.field-yellow{
+    background-color: rgb(218, 218, 5);
 }
 
-.pink{
-    background-color: pink;
+.field-red{
+    background-color: rgb(198, 0, 0);
+}
+
+.field-green{
+    background-color: rgb(6, 136, 6);
+}
+
+.field-pink{
+    background-color: rgb(255, 158, 174);
 }

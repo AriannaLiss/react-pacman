@@ -1,18 +1,28 @@
 import React from 'react';
+import ColorTable from './UI/colorTable/ColorTable';
 import PmSelect from './UI/pmSelect/PmSelect';
 
-const Menu = ({options, map, setMap}) => {
+const Menu = ({settings, setSettings}) => {//{options, map, setMap}) => {
     return (
-        <div  className="columns">
-            <div className="column">
-                <PmSelect 
-                    options={options}
-                    selectName = 'Choose playground'
-                    map={map}
-                    setMap={setMap}    
-                />
+        <form>
+            <p>You can adjust your game</p>
+            <div  className="columns">
+                <div className="column">
+                    <PmSelect 
+                        options={settings.map.options}
+                        title = 'Choose playground'
+                        map={settings.map.value}
+                        set={(value) => setSettings({...settings, map:{...settings.map, value:value}})}    
+                    />
+                    <ColorTable
+                        options={settings.color.options}
+                        title = 'Choose background color'
+                        selectedColor={settings.color.value}
+                        set={(value) => setSettings({...settings, color:{...settings.color, value:value}})}    
+                    />
+                </div>
             </div>
-        </div>
+        </form>
     );
 };
 
