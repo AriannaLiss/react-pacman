@@ -19,10 +19,6 @@ const Playground = ({map, playground, setPlayground, bgColor}) => {
         '-14':'field-green',
         '-15':'field-pink',
     }
-    
-    const LIGHT_COLORS =[
-        'white', 'aqua'
-    ]
 
     const createPlayground = () => {
         console.log('createPlayground')
@@ -44,7 +40,7 @@ const Playground = ({map, playground, setPlayground, bgColor}) => {
     const getPlaygroundStyle = () => {
         return {
             width: playground.length ? playground[0].length + 'rem' : 0,
-            backgroundColor: bgColor
+            // backgroundColor: bgColor
         }
     }
 
@@ -59,16 +55,16 @@ const Playground = ({map, playground, setPlayground, bgColor}) => {
         // }
     }
 
-    const getPlaygroundClasses = () => {
-        return LIGHT_COLORS.includes(bgColor) ? 'playground light-mode' : 'playground';
-    }
+    // const getPlaygroundClasses = () => {
+    //     return LIGHT_COLORS.includes(bgColor) ? 'playground light-mode ' + bgColor : 'playground ' + bgColor;
+    // }
 
     const isNotBorder = (f) => {
         return (f>=0 || f==-4)
     }
 
     return (
-        <div className={getPlaygroundClasses()} style={getPlaygroundStyle()}>
+        <div className='playground' style={getPlaygroundStyle()}>
             {
                 playground ? playground.map((row,y) =>
                     row.map((f,x) => 

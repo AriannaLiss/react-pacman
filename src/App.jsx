@@ -13,7 +13,11 @@ const App = () => {
         {name: 'google', value: google},
     ]
     const BG_COLORS = [
-        'black', 'white', 'magenta', 'red', 'aqua', 'grey'
+        'black', 'white', 'violet', 'pink', 'magenta', 'red', 'aqua', 'grey','yellow'
+    ]
+        
+    const LIGHT_COLORS =[
+        'white', 'aqua', 'yellow', 'pink'
     ]
 
     const [settings, setSettings] = useState({
@@ -32,7 +36,7 @@ const App = () => {
     const [playground, setPlayground] = useState([])
 
     return (
-        <div>
+        <div className={LIGHT_COLORS.includes(settings.color.value) ? 'app light-mode '+settings.color.value : 'app dark-mode '+settings.color.value}>
             <Menu 
                 settings = {settings}
                 setSettings = {setSettings} 

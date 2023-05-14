@@ -1,3 +1,21 @@
+* {
+    margin:0;
+    padding:0;
+}
+
+.app{
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    height: 97vh;
+}
+
+.dark-mode{
+    color:white
+}
+
 .blue{
     background-color: blue;
 }
@@ -7,7 +25,7 @@
 }
 
 .red{
-    background-color: red;
+    background-color: #f24949;
 }
 
 .green{
@@ -15,15 +33,15 @@
 }
 
 .pink{
-    background-color: pink;
+    background-color: rgb(247 173 245);
 }
 
 .magenta{
-    background-color: magenta;
+    background-color: #b714cb;
 }
 
 .aqua{
-    background-color: aqua;
+    background-color: rgb(5, 198, 198);
 }
 
 .black{
@@ -35,5 +53,9 @@
 }
 
 .grey{
-    background-color: grey;
+    background-color: rgb(124, 125, 152);
+}
+
+.violet{
+    background-color: rgb(140, 105, 255);
 }

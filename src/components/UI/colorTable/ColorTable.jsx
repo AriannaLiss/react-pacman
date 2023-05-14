@@ -9,9 +9,8 @@ const ColorTable = ({options, selectedColor, set, title}) => {
                 {options.map(color => 
                     <div 
                         className={color==selectedColor
-                            ? classes.selected + ' ' + classes.color
-                            : classes.color}
-                        style={{backgroundColor:color}}
+                            ? classes.selected + ' ' + classes.color + ' ' + color
+                            : classes.color + ' ' + color}
                         onClick={() => set(color)}
                     />
                 )}
