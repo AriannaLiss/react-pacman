@@ -8,6 +8,7 @@ const ColorTable = ({options, selectedColor, set, title}) => {
             <div className={classes.color_table}>
                 {options.map(color => 
                     <div 
+                        key={color}
                         className={color==selectedColor
                             ? classes.selected + ' ' + classes.color + ' ' + color
                             : classes.color + ' ' + color}
