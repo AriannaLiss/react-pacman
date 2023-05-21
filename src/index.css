@@ -12,6 +12,10 @@
     height: 97vh;
 }
 
+.hide{
+    display: none;
+}
+
 .dark-mode{
     color:white
 }

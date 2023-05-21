@@ -1,30 +1,14 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { PacmanContext } from '../../context';
+import { FIELDS, FIELDS_NUM } from '../../context/consts';
 import Pacman from '../pacman/Pacman';
 import './Playground.css'
 
-const Playground = ({map, playground, setPlayground, bgColor, setGhostDoor}) => {
-    const FIELDS = {
-        0:'empty',
-        1:'dot',
-        2:'great-dot',
-        3:'fruit',
-        4:'pacman-place',
-        5:'portal',
-        '-1':'border',
-        '-2':'double-border',
-        '-3':'door',
-        '-4':'ghost-place',
-        '-11':'field-blue',
-        '-12':'field-yellow',
-        '-13':'field-red',
-        '-14':'field-green',
-        '-15':'field-pink'
-    }
+const Playground = ({map, setPlayground, bgColor, setGhostDoor}) => {
 
-    const { dots, setDots } = useContext(PacmanContext)
+    const { dots, setDots, playground } = useContext(PacmanContext)
     const [pacmanPlace, setPacmanPlace] = useState({})
-    // const [ghostPlaces, setGhostPlaces] = useState([])
+    const [isReset, setIsReset] = useState(true);
 
     const createPlayground = () => {
         fetch(map)
@@ -36,26 +20,22 @@ const Playground = ({map, playground, setPlayground, bgColor, setGhostDoor}) => 
             })
         }
 
-        //TODO: document.addEventListener('keydown', checkKey);
-        // createPacman();
-        // createGhosts();
-
-
     const initPlayground = () => {
         let curDots = 0;
         let doorX = new Set();
         let doorY = new Set();
         setGhostDoor({x:new Set(), y:new Set()})
         playground.forEach((row,y) => row.forEach((field,x) => {
-            if(field == 1 || field == 2) curDots++;
-            if(field == 4) {setPacmanPlace({x,y})}
-            if(field == -3){ 
+            if(field == FIELDS_NUM.DOT || field == FIELDS_NUM.GREAT_DOT) curDots++;
+            if(field == FIELDS_NUM.PACMAN_PLACE) {setPacmanPlace({x,y})}
+            if(field == FIELDS_NUM.GHOST_PLACE){ 
                 doorX.add(x); 
                 doorY.add(y); 
             }
         }));
         setGhostDoor({x:doorX, y:doorY})
         setDots(curDots);
+        setIsReset(true);
     }
     
     useMemo(createPlayground, [map])
@@ -85,8 +65,8 @@ const Playground = ({map, playground, setPlayground, bgColor, setGhostDoor}) => 
 
     const getFieldClasses = (f) => {
         let classes = 'field '+FIELDS[f];
-        if (f<-10) classes += ' ' + FIELDS[-1];
-        if (isNotBorder(f)) classes += ` ${bgColor} ` + FIELDS[0];
+        if (f < FIELDS_NUM.OTHER_BORDERS) classes += ' ' + FIELDS[FIELDS_NUM.BORDER];
+        if (isNotBorder(f)) classes += ` ${bgColor} ` + FIELDS[FIELDS_NUM.EMPTY];
         return classes;
         //TODO: if (FIELDS[f]=='great-dot'){
         //     span.dataset.interval = setInterval(() => toggle(span),200)
@@ -95,7 +75,7 @@ const Playground = ({map, playground, setPlayground, bgColor, setGhostDoor}) => 
     }
 
     const isNotBorder = (f) => {
-        return (f>=0 || f==-4)
+        return (f>=FIELDS_NUM.EMPTY || f==FIELDS_NUM.GHOST_PLACE)
     }
 
     const renderPlayground = () => {
@@ -116,6 +96,8 @@ const Playground = ({map, playground, setPlayground, bgColor, setGhostDoor}) => 
                 { useMemo(renderPlayground,[playground])}
                 <Pacman
                     startPosition={{...pacmanPlace}}
+                    isReset = {isReset}
+                    setIsReset = {setIsReset}
                 />
             </div>
         </div>
